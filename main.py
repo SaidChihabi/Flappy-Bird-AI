@@ -13,7 +13,7 @@ WIN_HEIGHT = 800
 
 GEN = 0
 
-# Make image bigger and load the images
+# Images
 BIRD_IMGS = [
 pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird1.png"))),
 pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird2.png"))),
