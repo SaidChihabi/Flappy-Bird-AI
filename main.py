@@ -43,21 +43,21 @@ class Bird:
     
     def jump(self):
         self.vel = -10.5
-        self.tick_count=0
+        self.tick_count = 0
         self.height=self.y
     
     def move(self):
-        self.tick_count+=1
+        self.tick_count += 1
 
-        d = self.vel * self.tick_count + 1.5*self.tick_count**2
+        d = self.vel * self.tick_count + 1.5 * self.tick_count ** 2
         if d >= 16:
-            d=16
+            d = 16
         if d < 0:
-            d-= 2
+            d -= 2
 
         self.y = self.y+d
 
-        if d < 0 or self.y < self.height+50:
+        if d < 0 or self.y < self.height + 50:
             if self.tilt < self.MAX_ROTATION:
                 self.tilt = self.MAX_ROTATION
         else: 
@@ -69,19 +69,18 @@ class Bird:
 
         if self.img_count < self.ANIMATION_TIME:
             self.img = self.IMGS[0]
-        elif self.img_count < self.ANIMATION_TIME*2:
+        elif self.img_count < self.ANIMATION_TIME * 2:
             self.img = self.IMGS[1]
-        elif self.img_count < self.ANIMATION_TIME*3:
+        elif self.img_count < self.ANIMATION_TIME * 3:
             self.img = self.IMGS[2]
-        elif self.img_count < self.ANIMATION_TIME*4:
+        elif self.img_count < self.ANIMATION_TIME * 4:
             self.img = self.IMGS[1]
-        elif self.img_count == self.ANIMATION_TIME*4+1:
+        elif self.img_count == self.ANIMATION_TIME * 4 + 1:
             self.img = self.IMGS[0]
-            self.img_count=0
-
+            self.img_count = 0
         if self.tilt <= -80:
             self.img = self.IMGS[1]
-            self.img_count=self.ANIMATION_TIME*2
+            self.img_count=self.ANIMATION_TIME * 2
 
         rotated_image = pygame.transform.rotate(self.img, self.tilt)
         new_rect = rotated_image.get_rect(center=self.img.get_rect(topleft= (self.x, self.y)).center)
@@ -210,8 +209,8 @@ def main(genomes, config):
     
 
         pipe_ind = 0
-        if len(birds)>0:
-            if len(pipes)>1 and birds[0].x > pipes[0].x + pipes[0].PIPE_TOP.get_width():
+        if len(birds) > 0:
+            if len(pipes) > 1 and birds[0].x > pipes[0].x + pipes[0].PIPE_TOP.get_width():
                 pipe_ind = 1
         else:
             run = False
@@ -252,7 +251,7 @@ def main(genomes, config):
             
 
         if add_pipe:
-            score+=1
+            score += 1
             for g in ge:
                 g.fitness += 5
             pipes.append(Pipe(600))
@@ -281,7 +280,7 @@ def run(config_path):
     p.add_reporter(stats)
 
     #winner = p.run(main,50)
-    p.run(main,50)
+    p.run(main ,50)
 
 
 if __name__ == "__main__":
